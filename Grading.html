@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grading System</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    input { padding: 10px; width: 200px; }
+    button { padding: 10px 20px; margin: 10px; }
+    .back { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Grading System</h1>
+  <input type="number" id="score" placeholder="Enter your score (0-100)">
+  <button onclick="checkGrade()">Get Grade</button>
+
+  <h2 id="grade"></h2>
+
+  <div class="back">
+    <a href="index.html">⬅ Back to Projects</a>
+  </div>
+
+  <script>
+    function checkGrade() {
+      let score = parseInt(document.getElementById("score").value);
+      let grade = "";
+
+      if (isNaN(score) || score < 0 || score > 100) {
+        grade = "Invalid score!";
+      } else if (score >= 90) {
+        grade = "Grade: A";
+      } else if (score >= 80) {
+        grade = "Grade: B";
+      } else if (score >= 70) {
+        grade = "Grade: C";
+      } else if (score >= 60) {
+        grade = "Grade: D";
+      } else {
+        grade = "Grade: F";
+      }
+
+      document.getElementById("grade").innerText = grade;
+    }
+  </script>
+</body>
+</html>
