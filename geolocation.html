@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Geolocation</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    button { padding: 10px 20px; }
+    .back { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Geolocation</h1>
+  <p>Click the button to see how far you are from Kasem Bundit University.</p>
+  <button onclick="getLocation()">Where am I?</button>
+
+  <h2 id="output"></h2>
+
+  <div class="back">
+    <a href="index.html">⬅ Back to Projects</a>
+  </div>
+
+  <script>
+    const uniLat = 13.7502;
+    const uniLon = 100.5614;
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        document.getElementById("output").innerText = "Geolocation not supported.";
+      }
+    }
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const dist = calcDistance(lat, lon, uniLat, uniLon).toFixed(2);
+      document.getElementById("output").innerText = "You're " + dist + " km away from Kasem Bundit University.";
+    }
+
+    function showError(error) {
+      document.getElementById("output").innerText = "Error: " + error.message;
+    }
+
+    function calcDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+  </script>
+</body>
+</html>
