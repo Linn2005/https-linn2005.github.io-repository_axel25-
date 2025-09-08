@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Converter</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    input { padding: 10px; margin: 10px; width: 200px; }
+    button { padding: 10px 20px; }
+    .back { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Unit Converter</h1>
+  <p>Convert meters to kilometers and vice versa</p>
+
+  <input type="number" id="value" placeholder="Enter value">
+  <select id="unit">
+    <option value="m">Meters → Kilometers</option>
+    <option value="km">Kilometers → Meters</option>
+  </select>
+  <button onclick="convert()">Convert</button>
+
+  <h2 id="result"></h2>
+
+  <div class="back">
+    <a href="index.html">⬅ Back to Projects</a>
+  </div>
+
+  <script>
+    function convert() {
+      let val = parseFloat(document.getElementById("value").value);
+      let unit = document.getElementById("unit").value;
+      let result = "";
+
+      if (isNaN(val)) {
+        result = "Please enter a number.";
+      } else if (unit === "m") {
+        result = (val / 1000) + " km";
+      } else {
+        result = (val * 1000) + " m";
+      }
+
+      document.getElementById("result").innerText = result;
+    }
+  </script>
+</body>
+</html>
