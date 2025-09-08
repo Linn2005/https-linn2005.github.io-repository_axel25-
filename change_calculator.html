@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Change Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    input { padding: 10px; width: 200px; margin: 5px; }
+    button { padding: 10px 20px; }
+    .back { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Change Calculator</h1>
+  <input type="number" id="total" placeholder="Total Price">
+  <input type="number" id="paid" placeholder="Amount Paid">
+  <button onclick="calculateChange()">Calculate</button>
+
+  <h2 id="change"></h2>
+
+  <div class="back">
+    <a href="index.html">⬅ Back to Projects</a>
+  </div>
+
+  <script>
+    function calculateChange() {
+      let total = parseFloat(document.getElementById("total").value);
+      let paid = parseFloat(document.getElementById("paid").value);
+      let result = "";
+
+      if (isNaN(total) || isNaN(paid)) {
+        result = "Please enter valid numbers.";
+      } else if (paid < total) {
+        result = "Not enough money!";
+      } else {
+        result = "Change: " + (paid - total) + " Baht";
+      }
+
+      document.getElementById("change").innerText = result;
+    }
+  </script>
+</body>
+</html>
